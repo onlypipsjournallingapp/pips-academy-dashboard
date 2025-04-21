@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useProgress } from '@/contexts/ProgressContext';
+import DarkModeToggle from './DarkModeToggle';
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -65,8 +66,11 @@ const MainLayout = ({ children }: MainLayoutProps) => {
         )}
       >
         <div className="p-4 flex flex-col h-full">
-          <div className="text-center mb-6 mt-4">
+          <div className="flex justify-between items-center mb-6 mt-4 px-2">
             <h1 className="text-xl font-bold text-primary">Only Pips Academy</h1>
+            <div className="hidden md:block">
+              <DarkModeToggle />
+            </div>
           </div>
           
           {/* Progress Overview */}
@@ -105,6 +109,11 @@ const MainLayout = ({ children }: MainLayoutProps) => {
           </div>
         </div>
       </div>
+
+      {/* Dark mode toggle for mobile fixed at top right */}
+      <div className="fixed top-4 right-4 md:hidden z-50">
+        <DarkModeToggle />
+      </div>
       
       {/* Main content */}
       <div className="flex-1 overflow-y-auto p-4 md:p-8">
@@ -117,3 +126,4 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 };
 
 export default MainLayout;
+
