@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -109,5 +110,18 @@
   
   .progress-bar {
     @apply bg-primary h-full rounded-full transition-all duration-300;
+  }
+}
+
+/* Mobile-specific overrides */
+@media (max-width: 768px) {
+  .ui-open\:rotate-180[data-state="open"] {
+    transform: rotate(180deg);
+  }
+  
+  /* Make tab triggers more readable on mobile */
+  [role="tab"] {
+    height: auto;
+    min-height: 2rem;
   }
 }

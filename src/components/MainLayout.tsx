@@ -1,4 +1,3 @@
-
 import { ReactNode, useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { 
@@ -52,7 +51,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
     <div className="flex h-screen flex-col md:flex-row bg-background">
       {/* Mobile sidebar toggle */}
       <button
-        className="md:hidden fixed top-4 left-4 z-50 bg-primary text-primary-foreground p-2 rounded-md shadow-md"
+        className="md:hidden fixed top-4 left-4 z-50 bg-primary/70 backdrop-blur-sm text-primary-foreground p-2 rounded-md shadow-md"
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
       >
         {isSidebarOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -111,7 +110,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
       </div>
 
       {/* Dark mode toggle for mobile fixed at top right */}
-      <div className="fixed top-4 right-4 md:hidden z-50">
+      <div className="fixed top-4 right-4 md:hidden z-50 bg-background/70 backdrop-blur-sm p-1 rounded-full">
         <DarkModeToggle />
       </div>
       
@@ -126,4 +125,3 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 };
 
 export default MainLayout;
-

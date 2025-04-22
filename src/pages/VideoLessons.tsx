@@ -6,9 +6,11 @@ import ContentCard from '@/components/ContentCard';
 import YouTubeEmbed from '@/components/YouTubeEmbed';
 import { videoCategories } from '@/data/mockData';
 import { Video } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const VideoLessons = () => {
   const [activeCategory, setActiveCategory] = useState(videoCategories[0].id);
+  const isMobile = useIsMobile();
   
   return (
     <MainLayout>
@@ -21,12 +23,12 @@ const VideoLessons = () => {
         </div>
         
         <Tabs defaultValue={videoCategories[0].id} onValueChange={setActiveCategory}>
-          <TabsList className="mb-6 flex flex-wrap">
+          <TabsList className={`${isMobile ? 'mb-8 justify-center' : 'mb-6'}`}>
             {videoCategories.map((category) => (
               <TabsTrigger 
                 key={category.id} 
                 value={category.id}
-                className="text-sm py-2"
+                className={isMobile ? 'text-xs py-1.5 px-2' : 'text-sm py-2'}
               >
                 {category.title}
               </TabsTrigger>

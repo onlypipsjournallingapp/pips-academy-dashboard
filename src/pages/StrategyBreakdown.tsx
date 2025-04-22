@@ -4,10 +4,51 @@ import MainLayout from '@/components/MainLayout';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import ContentCard from '@/components/ContentCard';
 import { strategyBreakdownSections } from '@/data/mockData';
-import { FileText } from 'lucide-react';
+import { FileText, ChevronDown } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 
 const StrategyBreakdown = () => {
   const [activeSection, setActiveSection] = useState(strategyBreakdownSections[0].id);
+  const isMobile = useIsMobile();
+  
+  if (isMobile) {
+    return (
+      <MainLayout>
+        <div className="space-y-6">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">Strategy Breakdown</h1>
+            <p className="text-muted-foreground mt-2">
+              Learn the core components of our Forex trading strategy
+            </p>
+          </div>
+          
+          <div className="space-y-4">
+            {strategyBreakdownSections.map((section) => (
+              <Collapsible key={section.id} className="border rounded-md overflow-hidden">
+                <CollapsibleTrigger className="flex w-full items-center justify-between bg-muted px-4 py-3 font-medium">
+                  <span>{section.title}</span>
+                  <ChevronDown className="h-4 w-4 transition-transform duration-200 ui-open:rotate-180" />
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <div className="px-4 py-3">
+                    <div 
+                      className="prose prose-blue max-w-none"
+                      dangerouslySetInnerHTML={{ __html: section.content }}
+                    />
+                  </div>
+                </CollapsibleContent>
+              </Collapsible>
+            ))}
+          </div>
+        </div>
+      </MainLayout>
+    );
+  }
   
   return (
     <MainLayout>
