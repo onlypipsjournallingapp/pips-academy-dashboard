@@ -1,3 +1,4 @@
+
 import { ReactNode, useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { 
@@ -52,7 +53,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
     <div className="flex h-screen flex-col md:flex-row bg-background">
       {/* Mobile sidebar toggle */}
       <button
-        className="md:hidden fixed top-4 left-4 z-50 bg-primary/70 backdrop-blur-sm text-primary-foreground p-2 rounded-md shadow-md"
+        className="md:hidden fixed top-4 left-4 z-50 bg-primary/50 backdrop-blur-sm text-primary-foreground p-2 rounded-md shadow-md"
         style={{ opacity: 0.7 }}
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
       >
@@ -62,19 +63,16 @@ const MainLayout = ({ children }: MainLayoutProps) => {
       {/* Sidebar */}
       <div
         className={cn(
-          "fixed md:relative z-40 w-64 h-full bg-card border-r border-border shadow-sm transition-transform duration-300",
+          "fixed md:relative z-40 w-72 h-full bg-card border-r border-border shadow-sm transition-transform duration-300",
           isSidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
         )}
       >
         <div className="p-4 flex flex-col h-full">
           <div className="flex justify-between items-center mb-6 mt-4 px-2">
             <h1 className="text-xl font-bold text-primary">Only Pips Academy</h1>
-            <div className="hidden md:flex items-center gap-2">
+            <div className="flex items-center gap-3">
               <NotificationBell />
               <DarkModeToggle />
-            </div>
-            <div className="md:hidden">
-              {/* Empty placeholder for mobile to keep spacing */}
             </div>
           </div>
           

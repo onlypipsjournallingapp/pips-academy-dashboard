@@ -21,7 +21,7 @@ const QuestionSection = () => {
   }
 
   return (
-    <div className="relative bg-muted/70 dark:bg-muted/50 border border-border rounded-lg p-4 mt-4 transition hover:border-primary shadow-sm">
+    <div className="relative bg-muted/70 dark:bg-muted/50 border border-border rounded-lg p-4 mt-4 transition hover:border-primary shadow-sm mx-1">
       {/* Circle pulse for attention */}
       <div className="absolute -top-3 left-4 flex items-center">
         <span className={cn("inline-flex h-3 w-3 rounded-full bg-primary", ATTENTION_ANIMATION)} />

@@ -33,7 +33,7 @@ const NotificationBell = () => {
         <span className="absolute top-1 right-1 inline-flex h-2 w-2 rounded-full bg-primary"></span>
       </button>
       {open && (
-        <div className="absolute right-0 mt-2 w-64 bg-popover shadow-xl rounded-lg border z-50">
+        <div className="absolute right-0 mt-2 w-64 bg-popover shadow-xl rounded-lg border z-50 transform -translate-x-1/2 md:translate-x-0">
           <div className="p-4 text-sm text-muted-foreground text-center">
             <span className="font-semibold">No notifications yet.</span>
             <p className="mt-1">Stay tuned for trading tips and updates.</p>
