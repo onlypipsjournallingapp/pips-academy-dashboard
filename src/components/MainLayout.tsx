@@ -12,6 +12,8 @@ import {
 import { cn } from '@/lib/utils';
 import { useProgress } from '@/contexts/ProgressContext';
 import DarkModeToggle from './DarkModeToggle';
+import QuestionSection from './QuestionSection';
+import NotificationBell from './NotificationBell';
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -23,7 +25,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
   const { getProgressPercentage } = useProgress();
   const progressPercentage = getProgressPercentage();
   
-  // Close sidebar on mobile view by default
+  // Mobile sidebar handling
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
@@ -32,7 +34,6 @@ const MainLayout = ({ children }: MainLayoutProps) => {
         setIsSidebarOpen(true);
       }
     };
-    
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -52,6 +53,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
       {/* Mobile sidebar toggle */}
       <button
         className="md:hidden fixed top-4 left-4 z-50 bg-primary/70 backdrop-blur-sm text-primary-foreground p-2 rounded-md shadow-md"
+        style={{ opacity: 0.7 }}
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
       >
         {isSidebarOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -67,8 +69,12 @@ const MainLayout = ({ children }: MainLayoutProps) => {
         <div className="p-4 flex flex-col h-full">
           <div className="flex justify-between items-center mb-6 mt-4 px-2">
             <h1 className="text-xl font-bold text-primary">Only Pips Academy</h1>
-            <div className="hidden md:block">
+            <div className="hidden md:flex items-center gap-2">
+              <NotificationBell />
               <DarkModeToggle />
+            </div>
+            <div className="md:hidden">
+              {/* Empty placeholder for mobile to keep spacing */}
             </div>
           </div>
           
@@ -102,7 +108,10 @@ const MainLayout = ({ children }: MainLayoutProps) => {
               </Link>
             ))}
           </nav>
-          
+
+          {/* Have a Question Section */}
+          <QuestionSection />
+
           <div className="mt-auto text-center py-4 text-xs text-muted-foreground">
             Made with 💙 by Only Pips
           </div>
@@ -110,7 +119,8 @@ const MainLayout = ({ children }: MainLayoutProps) => {
       </div>
 
       {/* Dark mode toggle for mobile fixed at top right */}
-      <div className="fixed top-4 right-4 md:hidden z-50 bg-background/70 backdrop-blur-sm p-1 rounded-full">
+      <div className="fixed top-4 right-4 md:hidden z-50 flex items-center gap-2 bg-background/70 backdrop-blur-sm p-1 rounded-full">
+        <NotificationBell />
         <DarkModeToggle />
       </div>
       
